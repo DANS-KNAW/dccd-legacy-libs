@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<artifactId>dccd-legacy-libs</artifactId>
+		<groupId>nl.knaw.dans.common-legacy</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>dans-wicket</artifactId>
+	<packaging>jar</packaging>
+	<organization>
+		<name>DANS</name>
+		<url>http://www.dans.knaw.nl</url>
+	</organization>
+	<name>DANS Wicket</name>
+	<url>http://develop01.dans.knaw.nl/maven2/eof-open-source/dans-wicket</url>
+	<description>Shared Wicket components within DANS</description>
+
+	<properties>
+		<wicket.version>1.4.21</wicket.version>
+	</properties>
+
+	<dependencies>
+		<!-- WICKET DEPENDENCIES -->
+
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-extensions</artifactId>
+			<version>${wicket.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.wicket</groupId>
+			<artifactId>wicket-datetime</artifactId>
+			<version>${wicket.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>joda-time</groupId>
+					<artifactId>joda-time</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.wicketstuff</groupId>
+			<artifactId>tinymce</artifactId>
+			<!-- WAS <version>1.4.1</version>  -->
+			<!--  dccd doesn't use it anyway!!! -->
+			<version>1.4.18</version>
+		</dependency>
+		<dependency>
+			<groupId>org.wicketstuff</groupId>
+			<artifactId>progressbar</artifactId>
+			<version>1.4.18</version>
+		</dependency>
+		<dependency>
+			<groupId>org.wicketstuff</groupId>
+			<artifactId>progressbar-spring</artifactId>
+			<version>1.4.18</version>
+		</dependency>
+
+		<!-- END WICKET DEPENDENCIES -->
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20080701</version>
+		</dependency>
+
+		<!-- dans common language dependencies -->
+		<dependency>
+			<groupId>nl.knaw.dans.common-legacy</groupId>
+			<artifactId>dans-lang</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<!-- 
+		The wicket-tree-mod is a 'bug-fixed' replacement for wicket-tree
+		Problems are most likely resolved when upgrading the Wicket version!
+		Would like to have replaced it (back) with the original wicket-tree jar, 
+		because dccd is not using the functionality anyway.
+		However that wicket-tree jar was also not available on a public maven repo!
+		 -->
+		<dependency>
+			<groupId>wicket-tree</groupId>
+			<artifactId>wicket-tree-mod</artifactId>
+			<version>0.5-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.html</include>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+					<include>**/*.js</include>
+					<include>**/*.css</include>
+					<include>**/*.*</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<filtering>true</filtering>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</testResource>
+		</testResources>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>matrix-reloaded.knaw.dans.nl</id>
+			<url>scp://${repository-server}/var/www/html/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>matrix-reloaded.knaw.dans.nl</id>
+			<url>scp://${repository-server}/var/www/html/maven2-snapshots</url>
+		</snapshotRepository>
+
+		<site>
+			<id>develop01.knaw.dans.nl</id>
+			<name>Deployment Server</name>
+			<url>scp://${repository-server}/var/www/html/maven2/eof-open-source/${project.artifactId}</url>
+		</site>
+	</distributionManagement>
+
+	<repositories>
+	<!-- When your project needs specific repositories, add them here -->
+	</repositories>
+
+</project>
+

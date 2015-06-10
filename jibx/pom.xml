@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<artifactId>dccd-legacy-libs</artifactId>
+		<groupId>nl.knaw.dans.common-legacy</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>dans-jibx</artifactId>
+	<packaging>jar</packaging>
+	<organization>
+		<name>DANS</name>
+		<url>http://www.dans.knaw.nl</url>
+	</organization>
+	<!-- Please provide more information here -->
+	<name>DANS JiBX utilities</name>
+	<url>http://develop01.dans.knaw.nl/maven2/eof-open-source/jibx</url>
+	<description>JiBX utility library</description>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.jibx</groupId>
+			<artifactId>jibx-run</artifactId>
+			<version>${jibx.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jibx</groupId>
+			<artifactId>jibx-extras</artifactId>
+			<version>${jibx.version}</version>
+		</dependency>
+
+		<!-- dans common language dependencies -->
+		<dependency>
+			<groupId>nl.knaw.dans.common-legacy</groupId>
+			<artifactId>dans-lang</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>**/*.*</include>
+				</includes>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.jibx</groupId>
+				<artifactId>maven-jibx-plugin</artifactId>
+				<version>${jibx.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>bind</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<directory>src/main/config/</directory>
+					<includes>
+						<includes>*-binding.xml</includes>
+					</includes>
+					<verbose>false</verbose>
+				</configuration>
+			</plugin>
+
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.jibx</groupId>
+										<artifactId>
+											maven-jibx-plugin
+										</artifactId>
+										<versionRange>
+											[1.1.6a,)
+										</versionRange>
+										<goals>
+											<goal>bind</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute >
+                  							<runOnIncremental>true</runOnIncremental>
+                						</execute >
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>matrix-reloaded.knaw.dans.nl</id>
+			<url>scp://${repository-server}/var/www/html/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>matrix-reloaded.knaw.dans.nl</id>
+			<url>scp://${repository-server}/var/www/html/maven2-snapshots</url>
+		</snapshotRepository>
+
+		<site>
+			<id>develop01.knaw.dans.nl</id>
+			<name>Deployment Server</name>
+			<url>scp://${repository-server}/var/www/html/maven2/eof-open-source/${project.artifactId}</url>
+		</site>
+	</distributionManagement>
+
+	<repositories>
+	<!-- When your project needs specific repositories, add them here -->
+	</repositories>
+
+</project>
