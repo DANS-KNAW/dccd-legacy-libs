@@ -17,7 +17,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<source-code-version>1.6</source-code-version>
 		<byte-code-version>1.6</byte-code-version>
-		<!-- <jibx.version>1.2.4.5</jibx.version>  -->
 		<jibx.version>1.2.5</jibx.version>
 	</properties>
 
@@ -251,19 +250,18 @@
 			<url>http://jibx.sf.net/maven2</url>
 		</repository>
 
-<!-- for bcel, fixing JiBX on Java8 -->
-<repository>
-	<id>apache.snapshots</id>
-	<url>https://repository.apache.org/content/repositories/snapshots</url>
-	<snapshots>
-		<enabled>true</enabled>
-		<updatePolicy>always</updatePolicy>
-	</snapshots>
-	<releases>
-		<enabled>false</enabled>
-	</releases>
-</repository>
-
+		<!-- for bcel, fixing JiBX on Java8 -->
+		<repository>
+			<id>apache.snapshots</id>
+			<url>https://repository.apache.org/content/repositories/snapshots</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
