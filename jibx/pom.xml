@@ -21,13 +21,12 @@
 	<description>JiBX utility library</description>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.jibx</groupId>
 			<artifactId>jibx-run</artifactId>
 			<version>${jibx.version}</version>
 		</dependency>
-
+	
 		<dependency>
 			<groupId>org.jibx</groupId>
 			<artifactId>jibx-extras</artifactId>
@@ -40,7 +39,6 @@
 			<artifactId>dans-lang</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -79,12 +77,30 @@
 					</includes>
 					<verbose>false</verbose>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.jibx</groupId>
+						<artifactId>jibx-bind</artifactId>
+						<version>${jibx.version}</version>
+						<exclusions>
+							<exclusion>
+								<artifactId>bcel</artifactId>
+								<groupId>bcel</groupId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.bcel</groupId>
+						<artifactId>bcel</artifactId>
+						<version>6.0-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
 			</plugin>
-
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -106,9 +122,9 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<execute >
-                  							<runOnIncremental>true</runOnIncremental>
-                						</execute >
+										<execute>
+											<runOnIncremental>true</runOnIncremental>
+										</execute>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
