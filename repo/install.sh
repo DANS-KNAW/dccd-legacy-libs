@@ -48,3 +48,5 @@ mvn install:install-file -Dfile=openrdf-sesame-onejar-2.2.1.jar -DpomFile=openrd
 # rdf2go.api-4.6.2
 mvn install:install-file -Dfile=rdf2go.api-4.6.2.jar -DpomFile=rdf2go.api-4.6.2.pom
 
+# bcel-6.0-SNAPSHOT
+mvn install:install-file -Dfile=bcel-6.0-SNAPSHOT.jar -DpomFile=bcel-6.0-SNAPSHOT.pom
