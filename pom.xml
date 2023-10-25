@@ -97,7 +97,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.0.9</version>
+			<version>1.2.0</version>
 			<!-- Only for test scope. For run-time scope configure this in end-node-projects -->
 			<scope>test</scope>
 		</dependency>
